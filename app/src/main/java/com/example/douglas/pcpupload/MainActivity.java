@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
 
 
@@ -95,7 +98,9 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         //////////////////////////////////////////////////////////////////////////////intents for navigation
-        Intent intent = new Intent(this, addVehicle1.class);
+       // Intent intent = new Intent(this, addVehicle1.class);
+//////////////////////////////////////////////////////////////////////////////////////fragments
+
 
         // Handle navigation view item clicks here.
         int id = item.getItemId();
@@ -111,7 +116,13 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.add_vehicle) {
             Toast.makeText(this, "add vehicle", Toast.LENGTH_SHORT).show();
-            startActivity(intent);
+           // startActivity(intent);
+            //////////////////////////////////////////////////////////////////////////////////////OPEN the add vehicle fragment
+            Fragment myfragment = new addVehicleFragment();
+            FragmentTransaction myTransaction = getSupportFragmentManager().beginTransaction();
+            myTransaction.replace(R.id.fragment_container, myfragment);////put my fragment into the fragment container
+            myTransaction.addToBackStack(null);
+            myTransaction.commit();
         } else if (id == R.id.nav_send) {
 
         }
