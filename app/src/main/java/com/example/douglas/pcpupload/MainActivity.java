@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity
             Toast.makeText(this, "add vehicle", Toast.LENGTH_SHORT).show();
            // startActivity(intent);
             //////////////////////////////////////////////////////////////////////////////////////OPEN the add vehicle fragment
-            Fragment myfragment = new addVehicleFragment();
+            Fragment myfragment = new addVehicleFragment2();
             FragmentTransaction myTransaction = getSupportFragmentManager().beginTransaction();
             myTransaction.replace(R.id.fragment_container, myfragment);////put my fragment into the fragment container
             myTransaction.addToBackStack(null);

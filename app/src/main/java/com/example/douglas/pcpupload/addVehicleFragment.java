@@ -11,11 +11,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 
 public class addVehicleFragment extends Fragment {
@@ -30,6 +36,7 @@ public class addVehicleFragment extends Fragment {
 
     private TextView mselectDate;
     private DatePickerDialog.OnDateSetListener mdateSetListener;
+
 
 
     @Override
@@ -66,10 +73,32 @@ public class addVehicleFragment extends Fragment {
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 month = month+1;
                 Log.i("datepi", year+" "+month+" "+dayOfMonth);
-                String date = dayOfMonth+" "+month+" "+year;
+                //String date = dayOfMonth+" "+month+" "+year;
+                //yyyy-mm-dd hh:mm:ss
+                String date = month+" "+dayOfMonth+" "+year;
                 mselectDate.setText(date);
             }
         };
+Button submitter = (Button) v.findViewById(R.id.SubmitButton);
+final TextView  findvehiclename = (TextView)v.findViewById(R.id.enterVehicleName);
+final TextView finddatebought = (TextView)v.findViewById(R.id.textSelectDate);
+submitter.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        //Toast.makeText(getContext(), "clicked submit", Toast.LENGTH_SHORT).show();
+        String VehicleName = findvehiclename.getText().toString();
+        String DateBought = finddatebought.getText().toString();
+        DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        try {
+            Date date = (Date)formatter.parse(DateBought);
+            Log.i("date", ""+date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        Toast.makeText(getContext(), ""+VehicleName, Toast.LENGTH_SHORT).show();
+    }
+});
 
        return v;
     }
