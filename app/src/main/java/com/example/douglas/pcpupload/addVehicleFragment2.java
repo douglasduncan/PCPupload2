@@ -16,6 +16,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -33,8 +35,9 @@ public class addVehicleFragment2 extends Fragment {
         // Required empty public constructor
     }
 
-    private TextView mselectDate;
-    private DatePickerDialog.OnDateSetListener mdateSetListener;
+    //private TextView mselectDate;
+   // private DatePickerDialog.OnDateSetListener mdateSetListener;
+
 
 
 
@@ -46,7 +49,7 @@ public class addVehicleFragment2 extends Fragment {
        View v = inflater.inflate(R.layout.fragment_add_vehicle2, container, false);
 
        //////////////////////////////////////////////////////////////////////////////////////////////////create spinners DAY
-        Spinner spinner_day = (Spinner)v.findViewById(R.id.spinnerDay);
+        final Spinner spinner_day = (Spinner)v.findViewById(R.id.spinnerDay);
 // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter_day = ArrayAdapter.createFromResource(getContext(),
                 R.array.days_array, android.R.layout.simple_selectable_list_item);
@@ -56,7 +59,7 @@ public class addVehicleFragment2 extends Fragment {
         spinner_day.setAdapter(adapter_day);
 
         /////////////////////////////////////////////////////////////////////////////////////////create spinners MONTH
-        Spinner spinner_month = (Spinner)v.findViewById(R.id.spinnerMonth);
+        final Spinner spinner_month = (Spinner)v.findViewById(R.id.spinnerMonth);
 // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter_month = ArrayAdapter.createFromResource(getContext(),
                 R.array.months_array, android.R.layout.simple_selectable_list_item);
@@ -66,7 +69,7 @@ public class addVehicleFragment2 extends Fragment {
         spinner_month.setAdapter(adapter_month);
 
         /////////////////////////////////////////////////////////////////////////////////////////create spinners YEARS
-        Spinner spinner_year = (Spinner)v.findViewById(R.id.spinnerYear);
+        final Spinner spinner_year = (Spinner)v.findViewById(R.id.spinnerYear);
 // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter_year = ArrayAdapter.createFromResource(getContext(),
                 R.array.years_array, android.R.layout.simple_selectable_list_item);
@@ -81,12 +84,22 @@ public class addVehicleFragment2 extends Fragment {
 
 Button submitter = (Button) v.findViewById(R.id.SubmitButton);
 final TextView  findvehiclename = (TextView)v.findViewById(R.id.enterVehicleName);
-final TextView finddatebought = (TextView)v.findViewById(R.id.textSelectDate);
+final TextView initialMileages = (TextView)v.findViewById(R.id.startMileage);
+
+//final TextView finddatebought = (TextView)v.findViewById(R.id.textSelectDate);
 submitter.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
         Toast.makeText(getContext(), "clicked submit", Toast.LENGTH_SHORT).show();
+        String dayBought = spinner_day.getSelectedItem().toString();///////////////////////////get dates
+        String monthBought = spinner_month.getSelectedItem().toString();
+        String yearBought = spinner_year.getSelectedItem().toString();
+        String DateBought = dayBought+" "+monthBought+" "+yearBought;
 
+        String VehicleName = findvehiclename.getText().toString();
+        String InitialMiles = initialMileages.getText().toString();
+
+        Toast.makeText(getContext(), ""+dayBought, Toast.LENGTH_SHORT).show();
 
     }
 });

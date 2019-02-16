@@ -67,12 +67,12 @@
         android:textColor="@android:color/black" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/startMileage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="number"
-        android:hint="Enter Mileage"/>
+        android:hint="Enter Mileage"
+        android:inputType="number" />
 
     <TextView
         android:id="@+id/textView6"
