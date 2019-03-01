@@ -98,6 +98,10 @@ submitter.setOnClickListener(new View.OnClickListener() {
 
         String VehicleName = findvehiclename.getText().toString();
         String InitialMiles = initialMileages.getText().toString();
+        Integer   InitialMilesInteger = Integer.parseInt(InitialMiles);
+
+
+
 
         Toast.makeText(getContext(), ""+dayBought+monthBought+yearBought, Toast.LENGTH_SHORT).show();
 
