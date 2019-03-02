@@ -85,7 +85,7 @@ public class addVehicleFragment2 extends Fragment {
 Button submitter = (Button) v.findViewById(R.id.SubmitButton);
 final TextView  findvehiclename = (TextView)v.findViewById(R.id.enterVehicleName);
 final TextView initialMileages = (TextView)v.findViewById(R.id.startMileage);
-
+//String str;
 //final TextView finddatebought = (TextView)v.findViewById(R.id.textSelectDate);
 submitter.setOnClickListener(new View.OnClickListener() {
     @Override
@@ -94,16 +94,35 @@ submitter.setOnClickListener(new View.OnClickListener() {
         String dayBought = spinner_day.getSelectedItem().toString();///////////////////////////get dates
         String monthBought = spinner_month.getSelectedItem().toString();
         String yearBought = spinner_year.getSelectedItem().toString();
-        String DateBought = dayBought+" "+monthBought+" "+yearBought;
+        String DateBought = dayBought+"--"+monthBought+"--"+yearBought;
+
+        DateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
+
+
+        Date date = null;
+        try {
+            date = formatter.parse(DateBought);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        long output=date.getTime()/1000L;
+          String  DateBoughtUnix=Long.toString(output);
+
 
         String VehicleName = findvehiclename.getText().toString();
         String InitialMiles = initialMileages.getText().toString();
-        Integer   InitialMilesInteger = Integer.parseInt(InitialMiles);
+        //Integer   InitialMilesInteger = Integer.parseInt(InitialMiles);
+        //String str_date="13-09-2011";
+        //DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        //try {
+         //   Date date = formatter.parse(DateBought);
+         //   Log.i("date test", date.toString());
+       // } catch (ParseException e) {
+        //    e.printStackTrace();
+        //}
 
 
-
-
-        Toast.makeText(getContext(), ""+dayBought+monthBought+yearBought, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), ""+DateBought+" "+DateBoughtUnix, Toast.LENGTH_SHORT).show();
 
     }
 });
