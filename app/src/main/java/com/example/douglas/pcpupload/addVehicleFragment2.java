@@ -94,7 +94,7 @@ submitter.setOnClickListener(new View.OnClickListener() {
         String dayBought = spinner_day.getSelectedItem().toString();///////////////////////////get dates
         String monthBought = spinner_month.getSelectedItem().toString();
         String yearBought = spinner_year.getSelectedItem().toString();
-        String DateBought = dayBought+"--"+monthBought+"--"+yearBought;
+        String DateBought = dayBought+"-"+monthBought+"-"+yearBought;
 
         DateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
 
