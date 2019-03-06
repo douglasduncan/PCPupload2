@@ -1,6 +1,8 @@
 package com.example.douglas.pcpupload;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -23,6 +25,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
+import static android.content.Context.MODE_PRIVATE;
 
 
 public class addVehicleFragment2 extends Fragment {
@@ -85,6 +89,7 @@ public class addVehicleFragment2 extends Fragment {
 Button submitter = (Button) v.findViewById(R.id.SubmitButton);
 final TextView  findvehiclename = (TextView)v.findViewById(R.id.enterVehicleName);
 final TextView initialMileages = (TextView)v.findViewById(R.id.startMileage);
+final TextView annualMileage = (TextView)v.findViewById(R.id.AnnualMileage);
 //String str;
 //final TextView finddatebought = (TextView)v.findViewById(R.id.textSelectDate);
 submitter.setOnClickListener(new View.OnClickListener() {
@@ -111,6 +116,7 @@ submitter.setOnClickListener(new View.OnClickListener() {
 
         String VehicleName = findvehiclename.getText().toString();
         String InitialMiles = initialMileages.getText().toString();
+        String AnnualMiles = annualMileage.getText().toString();
         //Integer   InitialMilesInteger = Integer.parseInt(InitialMiles);
         //String str_date="13-09-2011";
         //DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
@@ -123,6 +129,11 @@ submitter.setOnClickListener(new View.OnClickListener() {
 
 
         Toast.makeText(getContext(), ""+DateBought+" "+DateBoughtUnix, Toast.LENGTH_SHORT).show();
+        SharedPreferences.Editor carAdder = getContext().getSharedPreferences(VehicleName, MODE_PRIVATE).edit();
+        carAdder.putString("first_timestamp", DateBoughtUnix);
+        carAdder.putString("first_mileage", InitialMiles);
+        carAdder.putString("annual_mileage", AnnualMiles);
+        carAdder.apply();
 
     }
 });
