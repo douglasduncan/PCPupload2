@@ -9,7 +9,7 @@
     <string name="title_activity_add_vehicle1">addVehicle1</string>
 
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_miles_fragment">add miles fragment</string>
     <string name="AddNewVehicleTitle">Add New Vehicle</string>
     <string name="NameOfVehicle">Vehicle Name</string>
     <string name="BoughtDate">Date when Bought</string>

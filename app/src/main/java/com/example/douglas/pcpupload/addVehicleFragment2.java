@@ -132,7 +132,7 @@ submitter.setOnClickListener(new View.OnClickListener() {
         SharedPreferences.Editor carAdder = getContext().getSharedPreferences(VehicleName, MODE_PRIVATE).edit();
         carAdder.putString("first_timestamp", DateBoughtUnix);
         carAdder.putString("first_mileage", InitialMiles);
-        carAdder.putString("annual_mileage", AnnualMiles);//
+        carAdder.putString("annual_mileage", AnnualMiles);
         carAdder.apply();
 
     }

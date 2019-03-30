@@ -106,8 +106,13 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            // this is the add miles fragment (Main activity)
             Toast.makeText(this, "clicked changed", Toast.LENGTH_SHORT).show();
+            Fragment addMiles = new AddMilesFragment();
+            FragmentTransaction addMilesTransaction = getSupportFragmentManager().beginTransaction();
+            addMilesTransaction.replace(R.id.fragment_container, addMiles);
+            addMilesTransaction.addToBackStack(null);
+            addMilesTransaction.commit();
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
@@ -131,4 +136,7 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+
 }
