@@ -87,6 +87,7 @@ public class addVehicleFragment2 extends Fragment {
 
 
 Button submitter = (Button) v.findViewById(R.id.SubmitButton);
+final TextView findVehicleRegistration = (TextView)v.findViewById(R.id.enterVehicleRegistration);
 final TextView  findvehiclename = (TextView)v.findViewById(R.id.enterVehicleName);
 final TextView initialMileages = (TextView)v.findViewById(R.id.startMileage);
 final TextView annualMileage = (TextView)v.findViewById(R.id.AnnualMileage);
@@ -101,7 +102,7 @@ submitter.setOnClickListener(new View.OnClickListener() {
         String yearBought = spinner_year.getSelectedItem().toString();
         String DateBought = dayBought+"-"+monthBought+"-"+yearBought;
 
-        DateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
+        DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 
 
         Date date = null;
@@ -113,7 +114,7 @@ submitter.setOnClickListener(new View.OnClickListener() {
         long output=date.getTime()/1000L;
           String  DateBoughtUnix=Long.toString(output);
 
-
+String VehicleRegistration = findVehicleRegistration.getText().toString();
         String VehicleName = findvehiclename.getText().toString();
         String InitialMiles = initialMileages.getText().toString();
         String AnnualMiles = annualMileage.getText().toString();
@@ -129,7 +130,8 @@ submitter.setOnClickListener(new View.OnClickListener() {
 
 
         Toast.makeText(getContext(), ""+DateBought+" "+DateBoughtUnix, Toast.LENGTH_SHORT).show();
-        SharedPreferences.Editor carAdder = getContext().getSharedPreferences(VehicleName, MODE_PRIVATE).edit();
+        SharedPreferences.Editor carAdder = getContext().getSharedPreferences(VehicleRegistration, MODE_PRIVATE).edit();
+        carAdder.putString("vehicle_name", VehicleName);
         carAdder.putString("first_timestamp", DateBoughtUnix);
         carAdder.putString("first_mileage", InitialMiles);
         carAdder.putString("annual_mileage", AnnualMiles);
