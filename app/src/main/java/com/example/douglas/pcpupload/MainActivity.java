@@ -35,14 +35,15 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-      //  FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-      //  fab.setOnClickListener(new View.OnClickListener() {
-       //     @Override
-       //     public void onClick(View view) {
-       //         Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-        //                .setAction("Action", null).show();
-       //     }
-      //  });
+        //////////////////////////////////////////////////////show the add miles fragment by default
+        Fragment addMiles = new AddMilesFragment();
+        FragmentTransaction addMilesTransaction = getSupportFragmentManager().beginTransaction();
+        addMilesTransaction.replace(R.id.fragment_container, addMiles);
+        addMilesTransaction.addToBackStack(null);
+        addMilesTransaction.commit();
+
+
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -55,10 +56,10 @@ public class MainActivity extends AppCompatActivity
 
         /////////////////////////////////////////////////////////////////////////my bit**************
 
-        calculaTor testing = new calculaTor();
+        //calculaTor testing = new calculaTor();
 
-        int returnted = testing.dd(800);
-        Toast.makeText(this, ""+returnted, Toast.LENGTH_LONG).show();
+        //int returnted = testing.dd(800);
+        //Toast.makeText(this, ""+returnted, Toast.LENGTH_LONG).show();
 
     }
 
@@ -95,6 +96,9 @@ public class MainActivity extends AppCompatActivity
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
+
+
+
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         //////////////////////////////////////////////////////////////////////////////intents for navigation
@@ -113,13 +117,9 @@ public class MainActivity extends AppCompatActivity
             addMilesTransaction.replace(R.id.fragment_container, addMiles);
             addMilesTransaction.addToBackStack(null);
             addMilesTransaction.commit();
-        } else if (id == R.id.nav_gallery) {
+        }
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.add_vehicle) {
+        else if (id == R.id.add_vehicle) {
             Toast.makeText(this, "add vehicle", Toast.LENGTH_SHORT).show();
            // startActivity(intent);
             //////////////////////////////////////////////////////////////////////////////////////OPEN the add vehicle fragment

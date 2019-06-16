@@ -91,11 +91,15 @@ public class AddMilesFragment extends Fragment {
                     String initial_mileage = SelectedCar.getString("first_mileage", "");////first mileage
                     String initial_timestamp = SelectedCar.getString("first_timestamp", "");////first timestamp
                     String annual_mileage = SelectedCar.getString("annual_mileage", "");////annual mileage
+                    String status = SelectedCar.getString("status", "");
 
                     Toast.makeText(getContext(), "clicked"+var1+var2, Toast.LENGTH_SHORT).show();
+
                     calculaTor calculate = new calculaTor();/////call the calculaTor class
 
-                   String returned =  calculate.cc(var2_int, var1, initial_timestamp, initial_mileage, annual_mileage, getActivity());//the MILES + vehicle + initial timestamp + initial mileage
+                   String returned =  calculate.cc(var2_int, var1, initial_timestamp, initial_mileage, annual_mileage, status, getActivity());//the MILES + vehicle + initial timestamp + initial mileage
+                    String[] testingg = calculate.dd();
+                    Log.i("testingg", ""+testingg[1]);
                     //Toast.makeText(getContext(), "this is from ccalculate"+returned, Toast.LENGTH_SHORT).show();
                     statusTextview.setText(returned);
 

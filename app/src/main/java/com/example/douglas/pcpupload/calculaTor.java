@@ -6,22 +6,41 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class calculaTor {
 
 
-    public int dd(int varry){/////a testing method
+    public String[] dd(){/////a testing method
+        String ar[];
+         ar = new String[]{"hello", "world"};
 
-        String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
-        Log.i("message", "this is a message");
-        int new_varry = varry*4;
-        return new_varry;
+        return ar;
 
     }
 //////////////////////////////////////////////////////////
-public String cc(int var2, String var1, String InitialTimestamp, String InitialMileage, String AnnualMileage, Context context ){///////calculate method var2 is miles, var1 is car
+public String cc(int var2, String var1, String InitialTimestamp, String InitialMileage, String AnnualMileage, String old_status, Context context ){///////calculate method var2 is miles, var1 is car
+
+    File prefsdir = new File(context.getApplicationInfo().dataDir,"shared_prefs");
+
+    if(prefsdir.exists() && prefsdir.isDirectory()) {
+        String listofCars[] = prefsdir.list();
+        for (int i = 0; i < listofCars.length; i++) {
+            //listofCars.set(i, "D");
+            int length = listofCars[i].length( ); // length == whatever
+            // listofCars[i]="what";////take off the .xml part of the filename
+
+            String substr= listofCars[i].substring(0,length-4);
+            listofCars[i]=substr;////take off the .xml part of the filename
+            Log.i("calculator list", "looping"+substr);
+            if(substr.equals(var1)){
+               Log.i("calculator list", "thats the one");
+            }
+        }
+    //Log.i("list of cars", );
+    }
 
         long tsLong = System.currentTimeMillis()/1000;////current timestamp as a long
         int tsInteger = (int) tsLong;////current timestamp as an integer
@@ -44,7 +63,7 @@ public String cc(int var2, String var1, String InitialTimestamp, String InitialM
 
 
 
-    return "timestamp"+tsInteger+"\ninitial timestamp"+tsInitialInt+"\ntimeframe"+timeframe+"\nallowed miles in timeframe"+AllowedMilesinTimeframe+"\nallowed"+Allowed+"\nstatus"+Status;
+    return "timestamp"+tsInteger+"\ninitial timestamp"+tsInitialInt+"\ntimeframe"+timeframe+"\nallowed miles in timeframe"+AllowedMilesinTimeframe+"\nallowed"+Allowed+"\nstatus"+Status+"\nlast status"+old_status;
 }
 ////////////////////////////////////////////////////////////////////////////////////////method to save status
     public static void saveStatus(Context context, String key, int value, String vehicle) {
