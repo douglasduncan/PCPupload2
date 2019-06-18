@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 
 import java.io.File;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -21,7 +22,7 @@ public class calculaTor {
 
     }
 //////////////////////////////////////////////////////////
-public String cc(int var2, String var1, String InitialTimestamp, String InitialMileage, String AnnualMileage, String old_status, Context context ){///////calculate method var2 is miles, var1 is car
+public String [] cc(int var2, String var1, String InitialTimestamp, String InitialMileage, String AnnualMileage, String old_status, Context context ){///////calculate method var2 is miles, var1 is car
 
     File prefsdir = new File(context.getApplicationInfo().dataDir,"shared_prefs");
 
@@ -52,7 +53,10 @@ public String cc(int var2, String var1, String InitialTimestamp, String InitialM
         double milesPerSecond = miles_per_year_int/(365.25*24*60*60);
         double AllowedMilesinTimeframe = milesPerSecond*timeframe;
         double Allowed = AllowedMilesinTimeframe+initialmileage;
-        double Status = var2-Allowed;
+        //double Status = var2-Allowed;
+        double Status = Math.round((var2-Allowed)*1000)/1000D;/////number of zeroes is number of decimal places
+        double OLDstatus_double =Math.round((Double.parseDouble(old_status))*1000)/1000D;
+    //double Status = Math.round((var2-Allowed)*1000)/1000D;/////number of zeroes is number of decimal places
 
 ///////////////////////////////////////////////////////////////////////////////////////////update the shared preferences file
     SharedPreferences sharedPref = context.getSharedPreferences(var1, Context.MODE_PRIVATE);
@@ -63,8 +67,11 @@ public String cc(int var2, String var1, String InitialTimestamp, String InitialM
 
 
 
-    return "timestamp"+tsInteger+"\ninitial timestamp"+tsInitialInt+"\ntimeframe"+timeframe+"\nallowed miles in timeframe"+AllowedMilesinTimeframe+"\nallowed"+Allowed+"\nstatus"+Status+"\nlast status"+old_status;
-}
+    //return "timestamp"+tsInteger+"\ninitial timestamp"+tsInitialInt+"\ntimeframe"+timeframe+"\nallowed miles in timeframe"+AllowedMilesinTimeframe+"\nallowed"+Allowed+"\nstatus"+Status+"\nlast status"+old_status;
+    String ar[];
+    ar = new String[]{Double.toString(Status), Double.toString(OLDstatus_double)};
+    return ar;
+    }
 ////////////////////////////////////////////////////////////////////////////////////////method to save status
     public static void saveStatus(Context context, String key, int value, String vehicle) {
         SharedPreferences sharedPref = context.getSharedPreferences(vehicle, Context.MODE_PRIVATE);

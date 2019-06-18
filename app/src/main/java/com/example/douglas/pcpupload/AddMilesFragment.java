@@ -42,7 +42,8 @@ public class AddMilesFragment extends Fragment {
         final Spinner spinnerCarSelector = (Spinner) v.findViewById(R.id.car_selector_spinner);
         final TextView CurrentMiles = (TextView) v.findViewById(R.id.currentMileage);
         Button addButton = (Button)v.findViewById(R.id.addMilesButton);
-        final TextView statusTextview = (TextView)v.findViewById(R.id.status);
+        final TextView statusTextview = (TextView)v.findViewById(R.id.TextViewstatus);
+        final TextView statusTextview2 = (TextView)v.findViewById(R.id.TextViewStatus2);
 
         File prefsdir = new File(getActivity().getApplicationInfo().dataDir,"shared_prefs");
 
@@ -97,11 +98,12 @@ public class AddMilesFragment extends Fragment {
 
                     calculaTor calculate = new calculaTor();/////call the calculaTor class
 
-                   String returned =  calculate.cc(var2_int, var1, initial_timestamp, initial_mileage, annual_mileage, status, getActivity());//the MILES + vehicle + initial timestamp + initial mileage
+                   String[] returned =  calculate.cc(var2_int, var1, initial_timestamp, initial_mileage, annual_mileage, status, getActivity());//the MILES + vehicle + initial timestamp + initial mileage
                     String[] testingg = calculate.dd();
                     Log.i("testingg", ""+testingg[1]);
                     //Toast.makeText(getContext(), "this is from ccalculate"+returned, Toast.LENGTH_SHORT).show();
-                    statusTextview.setText(returned);
+                    statusTextview.setText("Status = "+returned[0]+" miles");
+                    statusTextview2.setText("Previous Status = "+returned[1]+" miles");
 
                     //////////////////////////////////////////////////////////////use method to save status
                     //calculaTor.saveStatus(getActivity(), "status", 15, var1);
