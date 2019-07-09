@@ -135,6 +135,8 @@ String VehicleRegistration = findVehicleRegistration.getText().toString();
         carAdder.putString("first_timestamp", DateBoughtUnix);
         carAdder.putString("first_mileage", InitialMiles);
         carAdder.putString("annual_mileage", AnnualMiles);
+        carAdder.putString("last_mileage", "0");
+        carAdder.putString("status", "0");
         carAdder.apply();
 
     }

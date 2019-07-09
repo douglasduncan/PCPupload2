@@ -62,6 +62,7 @@ public String [] cc(int var2, String var1, String InitialTimestamp, String Initi
     SharedPreferences sharedPref = context.getSharedPreferences(var1, Context.MODE_PRIVATE);
     SharedPreferences.Editor editor = sharedPref.edit();
     editor.putString("status", Double.toString(Status));
+    editor.putString("last_mileage", Integer.toString(var2));
     editor.commit();
     Log.i("ddstatus", "saved status");
 
@@ -72,7 +73,7 @@ public String [] cc(int var2, String var1, String InitialTimestamp, String Initi
     ar = new String[]{Double.toString(Status), Double.toString(OLDstatus_double)};
     return ar;
     }
-////////////////////////////////////////////////////////////////////////////////////////method to save status
+////////////////////////////////////////////////////////////////////////////////////////method to save status - unused!
     public static void saveStatus(Context context, String key, int value, String vehicle) {
         SharedPreferences sharedPref = context.getSharedPreferences(vehicle, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();

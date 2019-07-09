@@ -38,17 +38,20 @@ public class AddMilesFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_add_miles, container, false);
-
+        ////////////////////////////////////////////////////////////////////////////////////////Spinner
         final Spinner spinnerCarSelector = (Spinner) v.findViewById(R.id.car_selector_spinner);
+
         final TextView CurrentMiles = (TextView) v.findViewById(R.id.currentMileage);
         Button addButton = (Button)v.findViewById(R.id.addMilesButton);
+        ///////////////////////////////////////////////////////////////////////////////////////Textviews
         final TextView statusTextview = (TextView)v.findViewById(R.id.TextViewstatus);
         final TextView statusTextview2 = (TextView)v.findViewById(R.id.TextViewStatus2);
+        final TextView overall_statusTextview = (TextView)v.findViewById(R.id.textViewOverallStatus);
 
         File prefsdir = new File(getActivity().getApplicationInfo().dataDir,"shared_prefs");
 
         if(prefsdir.exists() && prefsdir.isDirectory()){
-            String  listofCars[] = prefsdir.list();
+            final String  listofCars[] = prefsdir.list();
 
             for (int i = 0; i < listofCars.length; i++) {
                 //listofCars.set(i, "D");
@@ -97,15 +100,20 @@ public class AddMilesFragment extends Fragment {
                     Toast.makeText(getContext(), "clicked"+var1+var2, Toast.LENGTH_SHORT).show();
 
                     calculaTor calculate = new calculaTor();/////call the calculaTor class
+                    secondarycalculaTor overall_calculate = new secondarycalculaTor();/////call the secondary calculator class
 
-                   String[] returned =  calculate.cc(var2_int, var1, initial_timestamp, initial_mileage, annual_mileage, status, getActivity());//the MILES + vehicle + initial timestamp + initial mileage
-                    String[] testingg = calculate.dd();
-                    Log.i("testingg", ""+testingg[1]);
+                    String[] returned =  calculate.cc(var2_int, var1, initial_timestamp, initial_mileage, annual_mileage, status, getActivity());//the MILES + vehicle + initial timestamp + initial mileage
+                    //String[] testingg = calculate.dd();
+                    String overall_status = overall_calculate.cc_Secondary(listofCars, context);
+
+                    //Log.i("testingg", ""+testingg[1]);
                     //Toast.makeText(getContext(), "this is from ccalculate"+returned, Toast.LENGTH_SHORT).show();
                     statusTextview.setText("Status = "+returned[0]+" miles");
                     statusTextview2.setText("Previous Status = "+returned[1]+" miles");
+                    overall_statusTextview.setText(overall_status);
 
                     //////////////////////////////////////////////////////////////use method to save status
+                    //
                     //calculaTor.saveStatus(getActivity(), "status", 15, var1);
 
 
